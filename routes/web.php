@@ -24,5 +24,9 @@ use App\Http\Controllers\ClientController;
 
 Route::resource('clients', ClientController::class);
 // Dashboard
-Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
+
+Route::get('/', function () {
+    return redirect()->route('dashboard');
+});
 

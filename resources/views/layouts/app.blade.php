@@ -59,7 +59,7 @@
     <aside class="sidebar-app" id="sidebar">
         <ul class="sidebar-menu">
             <li class="menu-label">Menú Principal</li>
-            <li><a href="/dashboard" class="{{ request()->is('dashboard') ? 'active' : '' }}"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+            <li><a href="{{ route('dashboard') }}" class="{{ request()->is('dashboard') ? 'active' : '' }}"><i class="fas fa-chart-line"></i> Dashboard</a></li>
 
             <li class="menu-label">Gestión</li>
             <li><a href="{{ route('services.index') }}"><i class="fas fa-concierge-bell"></i> Servicios</a></li>
