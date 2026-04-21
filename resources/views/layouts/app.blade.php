@@ -422,18 +422,18 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="@if(request()->is('categories*')) active @endif">
-                    <i class="fas fa-tags"></i> Categorías
+                <a href="{{ route('manicuristas.index') }}" class="@if(request()->is('manicuristas*')) active @endif">
+                    <i class="fas fa-user-tie"></i> Manicuristas
                 </a>
             </li>
             <li>
-                <a href="#" class="@if(request()->is('staff*')) active @endif">
-                    <i class="fas fa-user-tie"></i> Personal
+                <a href="{{ route('disponibilidades.index') }}" class="@if(request()->is('disponibilidades*')) active @endif">
+                    <i class="fas fa-calendar-check"></i> Disponibilidades
                 </a>
             </li>
             <li>
                 <a href="#" class="@if(request()->is('appointments*')) active @endif">
-                    <i class="fas fa-calendar-check"></i> Citas
+                    <i class="fas fa-calendar-alt"></i> Citas
                 </a>
             </li>
 
