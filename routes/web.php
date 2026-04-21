@@ -9,3 +9,7 @@ Route::get('/', function () {
 use App\Http\Controllers\ServiceController;
 
 Route::resource('services', ServiceController::class);
+
+use App\Http\Controllers\ClientController;
+
+Route::resource('clients', ClientController::class);
