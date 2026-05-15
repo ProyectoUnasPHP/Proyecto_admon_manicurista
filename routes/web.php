@@ -21,6 +21,8 @@ use App\Http\Controllers\ManicuristaController;
 use App\Http\Controllers\DisponibilidadController;
 
 Route::resource('services', ServiceController::class);
+Route::resource('manicuristas', ManicuristaController::class);
+Route::resource('disponibilidades', DisponibilidadController::class);
 
 use App\Http\Controllers\ClientController;
 
