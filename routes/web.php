@@ -17,8 +17,12 @@ Route::get('/panel-admin', function () {
 require __DIR__.'/auth.php';
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\ManicuristaController;
+use App\Http\Controllers\DisponibilidadController;
 
 Route::resource('services', ServiceController::class);
+Route::resource('manicuristas', ManicuristaController::class);
+Route::resource('disponibilidades', DisponibilidadController::class);
 
 use App\Http\Controllers\ClientController;
 
@@ -29,4 +33,3 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['au
 Route::get('/', function () {
     return redirect()->route('dashboard');
 });
-
