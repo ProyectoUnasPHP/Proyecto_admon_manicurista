@@ -3,8 +3,6 @@
 @section('title', 'Dashboard')
 
 @section('content')
-<div class="container-fluid">
-    <!-- Header -->
     <div class="page-header mb-4">
         <h1 class="display-5 fw-bold mb-2">
             <i class="fas fa-spa me-2" style="color: #e74c3c;"></i>
@@ -13,9 +11,7 @@
         <p class="text-muted">Aquí puedes gestionar todos los servicios, citas y personal de tu spa</p>
     </div>
 
-    <!-- Stats Cards -->
     <div class="row g-4 mb-5">
-        <!-- Total Servicios -->
         <div class="col-md-4">
             <div class="card border-0 shadow-sm h-100" style="transition: transform 0.3s ease, box-shadow 0.3s ease;">
                 <div class="card-body p-4">
@@ -35,7 +31,6 @@
             </div>
         </div>
 
-        <!-- Total Citas -->
         <div class="col-md-4">
             <div class="card border-0 shadow-sm h-100" style="transition: transform 0.3s ease, box-shadow 0.3s ease;">
                 <div class="card-body p-4">
@@ -55,7 +50,6 @@
             </div>
         </div>
 
-        <!-- Total Usuarios -->
         <div class="col-md-4">
             <div class="card border-0 shadow-sm h-100" style="transition: transform 0.3s ease, box-shadow 0.3s ease;">
                 <div class="card-body p-4">
@@ -76,7 +70,6 @@
         </div>
     </div>
 
-    <!-- Welcome Section -->
     <div class="row">
         <div class="col-lg-8">
             <div class="card border-0 shadow-sm mb-4">
@@ -112,7 +105,6 @@
             </div>
         </div>
 
-        <!-- Quick Actions -->
         <div class="col-lg-4">
             <div class="card border-0 shadow-sm">
                 <div class="card-body p-4">
