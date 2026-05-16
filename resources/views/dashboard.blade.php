@@ -1,4 +1,4 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 
 @section('title', 'Dashboard')
 
@@ -11,7 +11,48 @@
         <p class="text-muted">Aquí puedes gestionar todos los servicios, citas y personal de tu spa</p>
     </div>
 
-    <div class="row g-4 mb-5">
+    
+    {{-- SLIDER --}}
+    <div id="spaSlider" class="carousel slide mb-4 rounded-3 overflow-hidden shadow-sm" data-bs-ride="carousel" data-bs-interval="3000">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#spaSlider" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#spaSlider" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#spaSlider" data-bs-slide-to="2"></button>
+        </div>
+        <div class="carousel-inner" style="height: 200px;">
+            <div class="carousel-item active" style="height:200px; background: linear-gradient(135deg, #2c3e50, #e74c3c);">
+                <div class="d-flex align-items-center justify-content-center h-100 text-white text-center px-4">
+                    <div>
+                        <h2 class="fw-bold mb-1"><i class="fas fa-spa me-2"></i>Bienvenido al Sistema Spa</h2>
+                        <p class="mb-0 opacity-75">Gestiona tu negocio de manicura fácilmente</p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item" style="height:200px; background: linear-gradient(135deg, #e74c3c, #c0392b);">
+                <div class="d-flex align-items-center justify-content-center h-100 text-white text-center px-4">
+                    <div>
+                        <h2 class="fw-bold mb-1"><i class="fas fa-user-tie me-2"></i>Manicuristas</h2>
+                        <p class="mb-0 opacity-75">Administra tu equipo y sus disponibilidades</p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item" style="height:200px; background: linear-gradient(135deg, #27ae60, #2c3e50);">
+                <div class="d-flex align-items-center justify-content-center h-100 text-white text-center px-4">
+                    <div>
+                        <h2 class="fw-bold mb-1"><i class="fas fa-calendar-check me-2"></i>Citas del día</h2>
+                        <p class="mb-0 opacity-75">Revisa y organiza las citas de tus clientes</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#spaSlider" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#spaSlider" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+    </div>
+<div class="row g-4 mb-5">
         <div class="col-md-4">
             <div class="card border-0 shadow-sm h-100" style="transition: transform 0.3s ease, box-shadow 0.3s ease;">
                 <div class="card-body p-4">
