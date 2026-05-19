@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nombre');
             $table->string('correo')->unique();
             $table->string('password');
-            $table->foreignId('id_rol')->constrained('roles')->onDelete('restrict');
+            // $table->foreignId('id_rol')->constrained('roles')->onDelete('restrict');
             $table->timestamps();
         });
     }
