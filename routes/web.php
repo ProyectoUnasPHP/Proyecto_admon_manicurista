@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\RoleController;
 
+
 Route::middleware(['auth'])->group(function () {
     Route::resource('roles', RoleController::class);
 });
@@ -25,14 +26,15 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ManicuristaController;
 use App\Http\Controllers\DisponibilidadController;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\UserController;
 
 Route::resource('services', ServiceController::class);
 Route::resource('manicuristas', ManicuristaController::class);
 Route::resource('disponibilidades', DisponibilidadController::class);
-
-use App\Http\Controllers\ClientController;
-
 Route::resource('clients', ClientController::class);
+Route::resource('users', UserController::class)->middleware(['auth', 'role:Admin']);
+
 // Dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
 

@@ -11,7 +11,7 @@
         <p class="text-muted">Aquí puedes gestionar todos los servicios, citas y personal de tu spa</p>
     </div>
 
-    
+
     {{-- SLIDER --}}
     <div id="spaSlider" class="carousel slide mb-4 rounded-3 overflow-hidden shadow-sm" data-bs-ride="carousel" data-bs-interval="3000">
         <div class="carousel-indicators">
@@ -59,7 +59,7 @@
                     <div class="d-flex align-items-center justify-content-between">
                         <div>
                             <p class="text-muted small mb-1">Total de Servicios</p>
-                            <h2 class="fw-bold mb-0" style="color: #3498db;">{{ $totalServices }}</h2>
+                            <h2 class="fw-bold mb-0" style="color: #3498db;">{{ $totalServices ?? 0 }}</h2>
                         </div>
                         <div class="p-3 rounded-circle" style="background-color: rgba(52, 152, 219, 0.1);">
                             <i class="fas fa-concierge-bell fa-2x" style="color: #3498db;"></i>
@@ -78,7 +78,7 @@
                     <div class="d-flex align-items-center justify-content-between">
                         <div>
                             <p class="text-muted small mb-1">Total de Citas</p>
-                            <h2 class="fw-bold mb-0" style="color: #27ae60;">{{ $totalAppointments }}</h2>
+                            <h2 class="fw-bold mb-0" style="color: #27ae60;">{{ $totalAppointments ?? 0 }}</h2>
                         </div>
                         <div class="p-3 rounded-circle" style="background-color: rgba(39, 174, 96, 0.1);">
                             <i class="fas fa-calendar-check fa-2x" style="color: #27ae60;"></i>
@@ -91,24 +91,28 @@
             </div>
         </div>
 
+        {{-- AQUI INICIA EL BLOQUEO PARA EL ADMIN --}}
+        @role('Admin')
         <div class="col-md-4">
             <div class="card border-0 shadow-sm h-100" style="transition: transform 0.3s ease, box-shadow 0.3s ease;">
                 <div class="card-body p-4">
                     <div class="d-flex align-items-center justify-content-between">
                         <div>
                             <p class="text-muted small mb-1">Total de Usuarios</p>
-                            <h2 class="fw-bold mb-0" style="color: #f39c12;">{{ $totalUsers }}</h2>
+                            <h2 class="fw-bold mb-0" style="color: #f39c12;">{{ $totalUsers ?? 0 }}</h2>
                         </div>
                         <div class="p-3 rounded-circle" style="background-color: rgba(243, 156, 18, 0.1);">
                             <i class="fas fa-users fa-2x" style="color: #f39c12;"></i>
                         </div>
                     </div>
                 </div>
-                <a href="#" class="card-footer bg-light border-0 text-decoration-none text-center py-2 small fw-semibold" style="color: #f39c12;">
+                <a href="{{ route('users.index') }}" class="card-footer bg-light border-0 text-decoration-none text-center py-2 small fw-semibold" style="color: #f39c12;">
                     Ver usuarios <i class="fas fa-arrow-right ms-1"></i>
                 </a>
             </div>
         </div>
+        @endrole
+        {{-- AQUI TERMINA EL BLOQUEO --}}
     </div>
 
     <div class="row">
@@ -163,9 +167,15 @@
                         <a href="#" class="btn btn-outline-success btn-sm">
                             <i class="fas fa-calendar-plus me-2"></i> Nueva Cita
                         </a>
-                        <a href="#" class="btn btn-outline-warning btn-sm">
+
+                        {{-- AQUI INICIA EL SEGUNDO BLOQUEO PARA EL ADMIN --}}
+                        @role('Admin')
+                        <a href="{{ route('users.create') }}" class="btn btn-outline-warning btn-sm">
                             <i class="fas fa-user-plus me-2"></i> Nuevo Usuario
                         </a>
+                        @endrole
+                        {{-- AQUI TERMINA EL SEGUNDO BLOQUEO --}}
+
                     </div>
                 </div>
             </div>
