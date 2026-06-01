@@ -1,4 +1,4 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 
 @section('title', 'Dashboard')
 
@@ -110,7 +110,7 @@
                 <div class="card-body p-4">
                     <h4 class="card-title fw-bold mb-3">
                         <i class="fas fa-bolt me-2" style="color: #f39c12;"></i>
-                        Acciones Rápidas
+                        Acciones rápidas
                     </h4>
                     <div class="d-grid gap-2">
                         <a href="{{ route('services.create') }}" class="btn btn-primary btn-sm">
@@ -119,13 +119,7 @@
                         <a href="{{ route('services.index') }}" class="btn btn-outline-primary btn-sm">
                             <i class="fas fa-list me-2"></i> Listar Servicios
                         </a>
-                        <a href="#" class="btn btn-outline-success btn-sm">
-                            <i class="fas fa-calendar-plus me-2"></i> Nueva Cita
-                        </a>
-                        <a href="#" class="btn btn-outline-warning btn-sm">
-                            <i class="fas fa-user-plus me-2"></i> Nuevo Usuario
-                        </a>
-                    </div>
+                        </div>
                 </div>
             </div>
         </div>
@@ -162,3 +156,4 @@
     }
 </style>
 @endsection
+

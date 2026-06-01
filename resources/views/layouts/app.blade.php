@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
@@ -58,16 +58,16 @@
 
     <aside class="sidebar-app" id="sidebar">
         <ul class="sidebar-menu">
-            <li class="menu-label">Menú Principal</li>
+            <li class="menu-label">MENÚ PRINCIPAL</li>
             <li><a href="{{ route('dashboard') }}" class="{{ request()->is('dashboard') ? 'active' : '' }}"><i class="fas fa-chart-line"></i> Dashboard</a></li>
 
-            <li class="menu-label">Gestión</li>
+            <li class="menu-label">GESTIÓN</li>
             <li><a href="{{ route('services.index') }}"><i class="fas fa-concierge-bell"></i> Servicios</a></li>
             <li><a href="#"><i class="fas fa-tags"></i> Categorías</a></li>
             <li><a href="#"><i class="fas fa-user-tie"></i> Personal</a></li>
 
             <li class="menu-label">Sistema</li>
-            <li><a href="#"><i class="fas fa-file-pdf"></i> Reportes</a></li>
+            
         </ul>
     </aside>
 
@@ -90,3 +90,4 @@
     @yield('additional_js')
 </body>
 </html>
+
