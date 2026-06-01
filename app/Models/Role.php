@@ -2,19 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Role extends Model
 {
-    use HasFactory;
+    protected $fillable = ['nombre_rol', 'descripcion', 'permisos'];
 
-    // Esto permite que podamos guardar el nombre del rol ('Admin' o 'Trabajadora')
-    protected $fillable = ['name'];
-
-    // Esta es la relación con los usuarios
-    public function users()
+    public function tienePermiso(string $permiso): bool
     {
-        return $this->belongsToMany(User::class);
+        $permisos = json_decode($this->permisos ?? '[]', true);
+        return in_array($permiso, $permisos);
     }
 }

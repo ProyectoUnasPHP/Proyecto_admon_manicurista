@@ -11,17 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('roles', function (Blueprint $table) {
+        Schema::create('usuarios', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique(); // Aquí guardaremos 'Admin' o 'Trabajadora'
+            $table->string('nombre');
+            $table->string('correo')->unique();
+            $table->string('password');
+            // $table->foreignId('id_rol')->constrained('roles')->onDelete('restrict');
             $table->timestamps();
         });
     }
+
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('roles');
+        Schema::dropIfExists('usuarios');
     }
 };

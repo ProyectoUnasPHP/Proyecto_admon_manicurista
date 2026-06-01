@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('role_user', function (Blueprint $table) {
+        Schema::create('disponibilidades', function (Blueprint $table) {
             $table->id();
-            // Clave foránea que apunta al usuario
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            // Clave foránea que apunta al rol
-            $table->foreignId('role_id')->constrained()->onDelete('cascade');
+            $table->foreignId('id_manicurista')->constrained('manicuristas')->onDelete('cascade');
+            $table->enum('dia_semana', ['lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado', 'domingo']);
+            $table->time('hora_inicio');
+            $table->time('hora_fin');
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('role_user');
+        Schema::dropIfExists('disponibilidades');
     }
 };

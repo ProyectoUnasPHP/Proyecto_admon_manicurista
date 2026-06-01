@@ -61,10 +61,34 @@
             <li class="menu-label">MENÚ PRINCIPAL</li>
             <li><a href="{{ route('dashboard') }}" class="{{ request()->is('dashboard') ? 'active' : '' }}"><i class="fas fa-chart-line"></i> Dashboard</a></li>
 
+<<<<<<< HEAD
             <li class="menu-label">GESTIÓN</li>
             <li><a href="{{ route('services.index') }}"><i class="fas fa-concierge-bell"></i> Servicios</a></li>
             <li><a href="#"><i class="fas fa-tags"></i> Categorías</a></li>
             <li><a href="#"><i class="fas fa-user-tie"></i> Personal</a></li>
+=======
+            <li class="menu-label">Gestión</li>
+            <li>
+                <a href="{{ route('services.index') }}" class="@if(request()->is('services*')) active @endif">
+                    <i class="fas fa-concierge-bell"></i> Servicios
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('manicuristas.index') }}" class="@if(request()->is('manicuristas*')) active @endif">
+                    <i class="fas fa-user-tie"></i> Manicuristas
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('disponibilidades.index') }}" class="@if(request()->is('disponibilidades*')) active @endif">
+                    <i class="fas fa-calendar-check"></i> Disponibilidades
+                </a>
+            </li>
+            <li>
+                <a href="#" class="@if(request()->is('appointments*')) active @endif">
+                    <i class="fas fa-calendar-alt"></i> Citas
+                </a>
+            </li>
+>>>>>>> 4f656c30b3b3f0f13869080df8327307362842e7
 
             <li class="menu-label">Sistema</li>
             
