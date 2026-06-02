@@ -1,14 +1,14 @@
 ﻿<?php
 
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Route;
 
 
 Route::middleware(['auth'])->group(function () {
     Route::resource('roles', RoleController::class);
 });
 
-use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
 
 
 Route::middleware('auth')->group(function () {
@@ -31,7 +31,7 @@ use App\Http\Controllers\UserController;
 
 Route::resource('services', ServiceController::class);
 Route::resource('manicuristas', ManicuristaController::class);
-Route::resource('disponibilidades', DisponibilidadController::class);
+Route::resource('disponibilidades', DisponibilidadController::class)->parameters(['disponibilidades' => 'disponibilidad']);
 Route::resource('clients', ClientController::class);
 Route::resource('users', UserController::class)->middleware(['auth', 'role:Admin']);
 

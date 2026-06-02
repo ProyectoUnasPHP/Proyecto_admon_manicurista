@@ -73,19 +73,18 @@
                                     <i class="fas fa-clock text-danger me-1"></i>
                                     {{ date('H:i', strtotime($disponibilidad->hora_fin)) }}
                                 </td>
-                                <td class="text-center">
-                                    <a href="{{ route('disponibilidades.edit', $disponibilidad) }}" class="btn btn-sm btn-outline-warning">
+                                <td>
+                                    <a href="{{ route('disponibilidades.edit', $disponibilidad->id) }}" class="btn btn-outline-warning btn-sm">
                                         <i class="fas fa-edit"></i> Editar
                                     </a>
-                                    <form action="{{ route('disponibilidades.destroy', $disponibilidad) }}" method="POST" class="d-inline"
-                                          onsubmit="return confirm('¿Eliminar esta disponibilidad?')">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-outline-danger">
-                                            <i class="fas fa-trash"></i> Eliminar
-                                        </button>
-                                    </form>
-                                </td>
+                                <form action="{{ route('disponibilidades.destroy', $disponibilidad) }}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-outline-danger btn-sm" onclick="return confirm('¿Estás seguro de que deseas eliminar esta disponibilidad?')">
+                                        <i class="fas fa-trash"></i> Eliminar
+                                    </button>
+                                </form>
+                            </td>
                             </tr>
                         @empty
                             <tr>
@@ -118,7 +117,7 @@
                         Información
                     </h5>
                     <p class="mb-0 text-muted small">
-                        Las disponibilidades representan los horarios en los que cada manicurista está disponible para atender citas. 
+                        Las disponibilidades representan los horarios en los que cada manicurista está disponible para atender citas.
                         Puedes crear múltiples franjas horarias por día para mayor flexibilidad en la programación.
                     </p>
                 </div>
