@@ -85,9 +85,9 @@
                         </div>
                     </div>
                 </div>
-                <a href="#" class="card-footer bg-light border-0 text-decoration-none text-center py-2 small fw-semibold" style="color: #27ae60;">
-                    Ver citas <i class="fas fa-arrow-right ms-1"></i>
-                </a>
+                    <a href="{{ route('disponibilidades.index') }}" class="card-footer bg-light border-0 text-decoration-none text-center py-2 small fw-semibold" style="color: #27ae60;">
+                        Ver citas <i class="fas fa-arrow-right ms-1"></i>
+                    </a>
             </div>
         </div>
 
@@ -164,7 +164,7 @@
                         <a href="{{ route('services.index') }}" class="btn btn-outline-primary btn-sm">
                             <i class="fas fa-list me-2"></i> Listar Servicios
                         </a>
-                        <a href="#" class="btn btn-outline-success btn-sm">
+                        <a href="{{ route('disponibilidades.create') }}" class="btn btn-outline-success btn-sm">
                             <i class="fas fa-calendar-plus me-2"></i> Nueva Cita
                         </a>
 

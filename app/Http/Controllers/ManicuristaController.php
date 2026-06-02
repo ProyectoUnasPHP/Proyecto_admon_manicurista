@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Manicurista;
-use App\Models\Usuario;
-use App\Models\Rol;
+use App\Models\User; // Usamos el modelo oficial
+use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Hash; // Para la contraseña
 
 class ManicuristaController extends Controller
 {
@@ -19,35 +20,31 @@ class ManicuristaController extends Controller
 
     public function create(): View
     {
-        $roles = Rol::all();
-        return view('manicuristas.create', compact('roles'));
+        // Ya no mandamos roles a la vista, porque al crear por aquí, SIEMPRE será manicurista
+        return view('manicuristas.create');
     }
 
     public function store(Request $request): RedirectResponse
     {
         $validated = $request->validate([
             'nombre' => 'required|string|max:255',
-            'correo' => 'required|email|unique:usuarios',
-            'password' => 'required|string|min:6',
+            'correo' => 'required|email|unique:users,email', // Cambiado a tabla users
+            'password' => 'required|string|min:8',
             'especialidad' => 'required|string|max:255',
             'telefono' => 'nullable|string|max:20',
         ]);
 
-        // Obtener rol por defecto o crear uno
-        $rol = Rol::firstOrCreate(
-            ['nombre_rol' => 'manicurista'],
-            ['descripcion' => 'Personal de manicura']
-        );
-
-        // Crear usuario
-        $usuario = Usuario::create([
-            'nombre' => $validated['nombre'],
-            'correo' => $validated['correo'],
-            'password' => bcrypt($validated['password']),
-            'id_rol' => $rol->id,
+        // 1. Crear el usuario oficial de Laravel
+        $usuario = User::create([
+            'name' => $validated['nombre'], // Mapeamos 'nombre' a 'name'
+            'email' => $validated['correo'], // Mapeamos 'correo' a 'email'
+            'password' => Hash::make($validated['password']),
         ]);
 
-        // Crear manicurista
+        // 2. Asignarle el rol de Spatie automáticamente
+        $usuario->assignRole('Manicurista');
+
+        // 3. Crear su perfil profesional
         Manicurista::create([
             'id_usuario' => $usuario->id,
             'especialidad' => $validated['especialidad'],
@@ -72,19 +69,19 @@ class ManicuristaController extends Controller
     {
         $validated = $request->validate([
             'nombre' => 'required|string|max:255',
-            'correo' => 'required|email|unique:usuarios,correo,' . $manicurista->usuario->id,
+            'correo' => 'required|email|unique:users,email,' . $manicurista->usuario->id,
             'especialidad' => 'required|string|max:255',
             'telefono' => 'nullable|string|max:20',
             'activo' => 'boolean',
         ]);
 
-        // Actualizar usuario
+        // Actualizar usuario oficial
         $manicurista->usuario->update([
-            'nombre' => $validated['nombre'],
-            'correo' => $validated['correo'],
+            'name' => $validated['nombre'],
+            'email' => $validated['correo'],
         ]);
 
-        // Actualizar manicurista
+        // Actualizar datos de manicurista
         $manicurista->update([
             'especialidad' => $validated['especialidad'],
             'telefono' => $validated['telefono'] ?? null,
@@ -99,7 +96,10 @@ class ManicuristaController extends Controller
     {
         $usuario = $manicurista->usuario;
         $manicurista->delete();
-        $usuario->delete();
+
+        if ($usuario) {
+            $usuario->delete();
+        }
 
         return redirect()->route('manicuristas.index')
                        ->with('success', 'Manicurista eliminada correctamente');

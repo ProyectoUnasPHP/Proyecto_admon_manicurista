@@ -18,8 +18,8 @@ class UserController extends Controller
 
     public function create()
     {
-        // Traemos todos los roles de la BD para mostrarlos en el select
-        $roles = Role::all();
+        // Traemos los roles, excluyendo 'Manicurista'
+        $roles = Role::where('name', '!=', 'Manicurista')->get();
         return view('users.create', compact('roles'));
     }
 
@@ -48,7 +48,8 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        $roles = Role::all();
+        // Traemos los roles, excluyendo 'Manicurista'
+        $roles = Role::where('name', '!=', 'Manicurista')->get();
         return view('users.edit', compact('user', 'roles'));
     }
 

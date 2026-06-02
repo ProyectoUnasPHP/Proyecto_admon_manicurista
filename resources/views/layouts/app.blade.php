@@ -62,6 +62,9 @@
             <li><a href="{{ route('dashboard') }}" class="{{ request()->is('dashboard') ? 'active' : '' }}"><i class="fas fa-chart-line"></i> Dashboard</a></li>
 
             <li class="menu-label">Gestión</li>
+
+            {{-- BLOQUE PROTEGIDO: Solo Admin puede ver Servicios y Manicuristas --}}
+            @role('Admin')
             <li>
                 <a href="{{ route('services.index') }}" class="@if(request()->is('services*')) active @endif">
                     <i class="fas fa-concierge-bell"></i> Servicios
@@ -72,19 +75,30 @@
                     <i class="fas fa-user-tie"></i> Manicuristas
                 </a>
             </li>
+            @endrole
+
+            {{-- Módulos públicos para Admin y Manicuristas --}}
             <li>
                 <a href="{{ route('disponibilidades.index') }}" class="@if(request()->is('disponibilidades*')) active @endif">
                     <i class="fas fa-calendar-check"></i> Disponibilidades
                 </a>
             </li>
             <li>
-                <a href="#" class="@if(request()->is('appointments*')) active @endif">
+                {{-- Enlace de citas apuntando al listado de disponibilidades --}}
+                <a href="{{ route('disponibilidades.index') }}" class="@if(request()->is('appointments*')) active @endif">
                     <i class="fas fa-calendar-alt"></i> Citas
                 </a>
             </li>
 
+            {{-- BLOQUE PROTEGIDO: Solo Admin puede ver el Sistema --}}
+            @role('Admin')
             <li class="menu-label">Sistema</li>
-            <li><a href="#"><i class="fas fa-file-pdf"></i> Reportes</a></li>
+            <li>
+                <a href="{{ route('users.index') }}" class="@if(request()->is('users*')) active @endif">
+                    <i class="fas fa-users"></i> Usuarios
+                </a>
+            </li>
+            @endrole
         </ul>
     </aside>
 
